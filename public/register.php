@@ -6,43 +6,32 @@ use App\Models\Admin;
 
 if (Auth::check()) { Helper::redirect(BASE_URL . '/dashboard.php'); }
 
-// ── Secret invite code ─────────────────────────────────────
-// Change this to anything you want — share it only with trusted people
-define('INVITE_CODE', 'FUTURECRM2026');
-
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // 1. Check invite code FIRST before anything else
-    $enteredCode = trim($_POST['invite_code'] ?? '');
-    if ($enteredCode !== INVITE_CODE) {
-        $errors['invite_code'] = 'Invalid invite code. You are not authorized to register.';
-    } else {
-        // 2. Validate all other fields
-        $v = new Validator($_POST);
-        $v->required('full_name', 'Full Name')
-          ->required('username',  'Username')->min('username', 3, 'Username')
-          ->required('email',     'Email')->email('email', 'Email')
-          ->required('password',  'Password')->min('password', 6, 'Password')
-          ->required('confirm',   'Confirm Password');
+    $v = new Validator($_POST);
+    $v->required('full_name', 'Full Name')
+      ->required('username',  'Username')->min('username', 3, 'Username')
+      ->required('email',     'Email')->email('email', 'Email')
+      ->required('password',  'Password')->min('password', 6, 'Password')
+      ->required('confirm',   'Confirm Password');
 
-        if ($v->passes() && $v->get('password') !== $v->get('confirm')) {
-            $errors['confirm'] = 'Passwords do not match.';
-        }
+    if ($v->passes() && $v->get('password') !== $v->get('confirm')) {
+        $errors['confirm'] = 'Passwords do not match.';
+    }
 
-        if (empty($errors) && $v->passes()) {
-            $adminModel = new Admin();
-            if ($adminModel->exists($v->get('username'), $v->get('email'))) {
-                $errors['general'] = 'Username or email already exists.';
-            } else {
-                $adminModel->create($v->all());
-                \App\Core\Session::flash('success', 'Account created successfully! Please sign in.');
-                Helper::redirect(BASE_URL . '/login.php');
-            }
+    if (empty($errors) && $v->passes()) {
+        $adminModel = new Admin();
+        if ($adminModel->exists($v->get('username'), $v->get('email'))) {
+            $errors['general'] = 'Username or email already exists.';
         } else {
-            $errors = array_merge($v->errors(), $errors);
+            $adminModel->create($v->all());
+            \App\Core\Session::flash('success', 'Account created successfully! Please sign in.');
+            Helper::redirect(BASE_URL . '/login.php');
         }
+    } else {
+        $errors = array_merge($v->errors(), $errors);
     }
 }
 
@@ -79,31 +68,6 @@ ob_start();
     <?php endif; ?>
 
     <form method="POST" novalidate class="space-y-4">
-
-      <!-- ── INVITE CODE (first field — most important) ── -->
-      <div class="p-4 rounded-xl border-2 <?= isset($errors['invite_code']) ? 'border-red-300 bg-red-50' : 'border-indigo-200 bg-indigo-50' ?>">
-        <label class="block text-sm font-bold text-indigo-700 mb-1.5 flex items-center gap-2">
-          <i class="bi bi-shield-lock-fill"></i>
-          Invite Code <span class="text-red-500">*</span>
-        </label>
-        <input type="text" name="invite_code"
-               value="<?= Helper::e($_POST['invite_code'] ?? '') ?>"
-               class="w-full px-4 py-2.5 border <?= isset($errors['invite_code']) ? 'border-red-400 bg-white' : 'border-indigo-300 bg-white' ?> rounded-xl text-sm font-mono tracking-widest focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition uppercase"
-               placeholder="Enter your invite code"
-               autocomplete="off"
-               style="letter-spacing:.15em;">
-        <?php if (isset($errors['invite_code'])): ?>
-          <p class="text-red-600 text-xs mt-1.5 font-semibold flex items-center gap-1">
-            <i class="bi bi-x-circle-fill"></i>
-            <?= Helper::e($errors['invite_code']) ?>
-          </p>
-        <?php else: ?>
-          <p class="text-indigo-500 text-xs mt-1.5 flex items-center gap-1">
-            <i class="bi bi-info-circle"></i>
-            You need an invite code to create an admin account.
-          </p>
-        <?php endif; ?>
-      </div>
 
       <!-- Full Name -->
       <div>
