@@ -1,0 +1,202 @@
+/* ============================================================
+   CRM Pulse – Custom CSS + Full Dark Mode
+   ============================================================ */
+
+/* ── Font imports (fallback if not in layout) ─────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap');
+
+/* ── Global heading font ──────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  letter-spacing: -.02em;
+}
+
+/* ── Dark Mode Variables ─────────────────────────────────── */
+body.dark-mode {
+    --bg:        #0f172a;
+    --surface:   #1e293b;
+    --border:    #334155;
+    --text:      #f1f5f9;
+    --text-muted:#94a3b8;
+    --input-bg:  #0f172a;
+}
+
+/* ── Dark Mode — Body & Layout ───────────────────────────── */
+body.dark-mode {
+    background: #0f172a !important;
+    color: #f1f5f9;
+}
+
+/* Topbar */
+body.dark-mode header {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+body.dark-mode header h1,
+body.dark-mode header span { color: #f1f5f9 !important; }
+body.dark-mode #darkToggle,
+body.dark-mode #sidebarToggle {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+    color: #94a3b8 !important;
+}
+
+/* Main content background */
+body.dark-mode main { background: #0f172a !important; }
+
+/* ── Dark Mode — Cards ───────────────────────────────────── */
+body.dark-mode .stat-card,
+body.dark-mode .bg-white {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .stat-card p,
+body.dark-mode .stat-card span { color: #94a3b8; }
+body.dark-mode .stat-card .text-slate-800,
+body.dark-mode .stat-card .counter { color: #f1f5f9 !important; }
+body.dark-mode .stat-card .text-slate-500,
+body.dark-mode .stat-card .text-slate-400 { color: #64748b !important; }
+
+/* ── Dark Mode — Tables ──────────────────────────────────── */
+body.dark-mode table thead tr { background: #0f172a !important; }
+body.dark-mode table thead th { color: #64748b !important; }
+body.dark-mode table tbody tr { border-color: #1e293b !important; }
+body.dark-mode table tbody tr:hover { background: #0f172a !important; }
+body.dark-mode table tbody td { color: #cbd5e1; }
+body.dark-mode .text-slate-800 { color: #f1f5f9 !important; }
+body.dark-mode .text-slate-700 { color: #e2e8f0 !important; }
+body.dark-mode .text-slate-600 { color: #cbd5e1 !important; }
+body.dark-mode .text-slate-500 { color: #94a3b8 !important; }
+body.dark-mode .text-slate-400 { color: #64748b !important; }
+
+/* ── Dark Mode — Panels ──────────────────────────────────── */
+body.dark-mode .border-slate-100,
+body.dark-mode .border-slate-200 { border-color: #334155 !important; }
+body.dark-mode .bg-slate-50,
+body.dark-mode .bg-\[#f8fafc\] { background: #0f172a !important; }
+body.dark-mode .bg-slate-100 { background: #334155 !important; }
+body.dark-mode .text-slate-600.bg-slate-100 { color: #94a3b8 !important; }
+
+/* ── Dark Mode — Forms ───────────────────────────────────── */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+    color: #f1f5f9 !important;
+}
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder { color: #475569 !important; }
+body.dark-mode label { color: #cbd5e1 !important; }
+
+/* ── Dark Mode — Section headers ─────────────────────────── */
+body.dark-mode h2,
+body.dark-mode h3 { color: #f1f5f9 !important; }
+body.dark-mode p   { color: #94a3b8; }
+
+/* ── Dark Mode — Activity feed ───────────────────────────── */
+body.dark-mode .hover\:bg-slate-50:hover { background: #0f172a !important; }
+body.dark-mode .border-slate-50 { border-color: #1e293b !important; }
+
+/* ── Dark Mode — Flash messages ──────────────────────────── */
+body.dark-mode .bg-emerald-50 { background: rgba(34,197,94,.1) !important; }
+body.dark-mode .bg-red-50     { background: rgba(239,68,68,.1) !important; }
+
+/* ── Dark Mode — Pipeline bars ───────────────────────────── */
+body.dark-mode .bg-slate-100.rounded-full { background: #334155 !important; }
+
+/* ── Dark Mode — Sidebar (already dark, minor tweaks) ────── */
+body.dark-mode #sidebar { background: #020617 !important; }
+body.dark-mode #sidebar .border-white\/5 { border-color: rgba(255,255,255,.04) !important; }
+
+/* ── Stat card hover ─────────────────────────────────────── */
+.stat-card { cursor: default; }
+.stat-card[data-href] { cursor: pointer; }
+
+/* ── Smooth transitions ──────────────────────────────────── */
+body, header, main, .stat-card, .bg-white, input, select, textarea {
+    transition: background-color .25s ease, border-color .25s ease, color .2s ease;
+}
+
+/* ════════════════════════════════════════════════
+   MOBILE LAYOUT FIXES
+════════════════════════════════════════════════ */
+
+/* On mobile: main content takes full width, no left margin */
+@media (max-width: 767px) {
+    main { margin-left: 0 !important; }
+    #topbar { left: 0 !important; }
+
+    /* Tighter padding on mobile */
+    .content-area, main > div { padding: 16px !important; }
+
+    /* Stack filter bar on mobile */
+    .filter-bar-form { flex-direction: column !important; }
+    .filter-bar-form > * { width: 100% !important; min-width: unset !important; }
+
+    /* Table: allow horizontal scroll */
+    .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* Leads table: hide less important columns on mobile */
+    .crm-table th:nth-child(3),
+    .crm-table td:nth-child(3),
+    .crm-table th:nth-child(6),
+    .crm-table td:nth-child(6) { display: none; }
+
+    /* Panel header: stack on mobile */
+    .panel-header-wrap { flex-direction: column !important; align-items: flex-start !important; }
+    .panel-header-wrap .panel-actions { width: 100%; }
+    .panel-header-wrap .search-input { width: 100% !important; }
+
+    /* Stat cards: 1 column on very small screens */
+    .stats-grid-mobile { grid-template-columns: 1fr 1fr !important; }
+
+    /* Welcome banner button: hide on mobile (already in topbar) */
+    .welcome-add-btn { display: none !important; }
+
+    /* Activity panel: show below table on mobile */
+    .activity-panel { display: block !important; }
+
+    /* Reduce font sizes slightly */
+    h2 { font-size: 1.25rem !important; }
+    .text-4xl { font-size: 2rem !important; }
+}
+
+/* ════════════════════════════════════════════════
+   SIDEBAR MOBILE — reliable open/close
+════════════════════════════════════════════════ */
+
+/* Mobile: sidebar hidden by default */
+@media (max-width: 767px) {
+    #sidebar {
+        transform: translateX(-100%) !important;
+        transition: transform .28s cubic-bezier(.4,0,.2,1);
+    }
+    /* When open class is added by JS */
+    #sidebar.open {
+        transform: translateX(0) !important;
+    }
+    /* Overlay */
+    #sidebarOverlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.55);
+        z-index: 45;
+    }
+    #sidebarOverlay.show {
+        display: block !important;
+    }
+}
+
+/* Desktop: sidebar always visible */
+@media (min-width: 768px) {
+    #sidebar {
+        transform: translateX(0) !important;
+    }
+    #sidebarOverlay { display: none !important; }
+}
+
+/* ── Chart containers dark mode ──────────────────────────── */
+body.dark-mode canvas { filter: brightness(.92); }
