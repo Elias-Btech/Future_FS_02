@@ -1,337 +1,285 @@
-# 🚀 CRM Pulse – Mini Lead Management System
+<div align="center">
 
-A modern, lightweight Customer Relationship Management (CRM) system built with PHP for managing leads, tracking follow-ups, and generating business reports.
+<img src="https://img.shields.io/badge/PHP-8.0+-777BB4?style=for-the-badge&logo=php&logoColor=white" />
+<img src="https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
+<img src="https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+<img src="https://img.shields.io/badge/Chart.js-4.4-FF6384?style=for-the-badge&logo=chart.js&logoColor=white" />
+<img src="https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge" />
 
-**Project:** Full Stack Web Development – Task 2 (2026) | Future Interns
+<br/><br/>
+
+<h1>⚡ CRM Pulse</h1>
+<h3>Smart Lead Management System for Modern Businesses</h3>
+
+<p>A full-stack, production-ready Mini CRM built with PHP 8, MySQL, and Tailwind CSS.<br/>
+Track leads, automate follow-ups, and grow your business — all from one beautiful dashboard.</p>
+
+<br/>
+
+<a href="#-demo">View Demo</a> · <a href="#-features">Features</a> · <a href="#-quick-start">Quick Start</a> · <a href="#-project-structure">Structure</a>
+
+</div>
+
+---
+
+## 📸 Preview
+
+| Home Page | Dashboard | Reports |
+|-----------|-----------|---------|
+| Modern landing page with hero, features, pricing | Real-time stats, charts, activity feed | Analytics, pipeline breakdown, CSV export |
 
 ---
 
 ## ✨ Features
 
-### 📊 Dashboard
-- Real-time statistics (Total Leads, New Leads, Follow-ups, Conversions)
-- Interactive charts showing leads over time, status distribution, and source breakdown
-- Recent activity feed
-- Quick access to overdue follow-ups
+### 🔐 Authentication & Security
+- Session-based login with **bcrypt** password hashing
+- Protected routes — unauthenticated users are redirected
+- Input validation and **XSS sanitization** on all forms
+- SQL injection prevention via **PDO prepared statements**
 
 ### 👥 Lead Management
-- Create, view, edit, and delete leads
-- Track lead information: name, email, phone, company, source
-- Assign priority levels (Low, Medium, High)
-- Manage lead status (New, Contacted, Follow-up, Converted, Closed)
-- Search and filter leads by status, priority, or source
+- Full **CRUD** — Create, Read, Update, Delete leads
+- Track name, email, phone, company, source, status, priority
+- Instant **search** by name, email, or company
+- **Filter** by status, priority, source, and date range
 
 ### 📅 Follow-up System
-- Schedule follow-up dates for leads
-- Add notes and track communication history
-- Automatic overdue follow-up alerts
-- Activity logging for all lead interactions
+- Schedule follow-up dates per lead
+- Add timestamped notes and interaction history
+- **Overdue alerts** on the dashboard — never miss a follow-up
+- Full activity log for every action taken
 
-### 📈 Reports & Analytics
-- Comprehensive business analytics
-- Lead status breakdown with visual progress bars
-- Source performance tracking
-- Export data to CSV for external analysis
+### � Dashboard & Analytics
+- Live stat cards — Total, New, Follow-ups, Converted
+- **Line chart** — Leads over the last 7 days
+- **Doughnut chart** — Lead status distribution
+- **Bar chart** — Leads by source
+- Pipeline breakdown with progress bars
+- Recent leads table + activity feed
+
+### 📈 Reports & Export
 - Conversion rate calculations
+- Status and source breakdown with visual bars
+- **One-click CSV export** of all lead data
 
-### 🎨 User Interface
-- Clean, modern design with Tailwind CSS
-- Responsive layout (mobile, tablet, desktop)
-- Dark mode support
-- Smooth animations and transitions
-- Intuitive navigation with sidebar menu
-
-### 🔐 Security
-- Secure authentication system
-- Session management
-- Input validation and sanitization
-- SQL injection protection with PDO prepared statements
-- Password hashing with bcrypt
+### 🎨 UI / UX
+- Fully **responsive** — mobile, tablet, desktop
+- Clean modern design with **Tailwind CSS**
+- Smooth animations and scroll reveal effects
+- Beautiful public landing page with pricing, testimonials, and CTA
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **PHP 8+** | Backend logic with OOP architecture |
-| **MySQL** | Database management |
-| **PDO** | Secure database interactions |
-| **Tailwind CSS** | Modern, utility-first styling |
-| **Chart.js** | Interactive data visualizations |
-| **Vanilla JavaScript** | Client-side interactivity |
-| **Bootstrap Icons** | Icon library |
+| Layer | Technology |
+|-------|-----------|
+| **Backend** | PHP 8+ · OOP · MVC-inspired architecture |
+| **Database** | MySQL 8 · PDO · Prepared Statements |
+| **Frontend** | Tailwind CSS · Vanilla JavaScript · Bootstrap Icons |
+| **Charts** | Chart.js 4.4 |
+| **Fonts** | Inter · Plus Jakarta Sans (Google Fonts) |
+| **Server** | Apache · XAMPP |
 
 ---
 
-## 📦 Installation & Setup
+## � Quick Start
 
 ### Prerequisites
-- XAMPP (or any PHP 8+ and MySQL environment)
-- Web browser (Chrome, Firefox, Edge, etc.)
+- [XAMPP](https://www.apachefriends.org/) (PHP 8+ & MySQL)
+- A modern web browser
 
-### Step-by-Step Installation
+### Installation
 
-1. **Download and Extract**
-   - Extract the project folder to your XAMPP directory
-   - Recommended path: `C:/xampp/htdocs/crm/`
+**1. Clone the repository**
+```bash
+git clone https://github.com/Elias-Araya/FUTURE_FS_02.git
+cd FUTURE_FS_02
+```
 
-2. **Start XAMPP Services**
-   - Open XAMPP Control Panel
-   - Start **Apache** and **MySQL** services
+**2. Move to XAMPP htdocs**
+```
+C:/xampp/htdocs/FUTURE_FS_02/
+```
 
-3. **Create Database**
-   - Open your browser and go to `http://localhost/phpmyadmin`
-   - Create a new database named `crm_db`
-   - Click on the database, then go to the **Import** tab
-   - Select the file `database/schema.sql` from the project folder
-   - Click **Go** to import the database structure and sample data
+**3. Start XAMPP**
+- Open XAMPP Control Panel
+- Start **Apache** and **MySQL**
 
-4. **Configure Database Connection** (if needed)
-   - Open `config/database.php`
-   - Update credentials if your MySQL setup is different:
-     ```php
-     define('DB_HOST', 'localhost');
-     define('DB_NAME', 'crm_db');
-     define('DB_USER', 'root');
-     define('DB_PASS', '');
-     ```
+**4. Create the database**
+- Go to `http://localhost/phpmyadmin`
+- Create a database named `crm_db`
+- Click **Import** → select `database/schema.sql` → click **Go**
 
-5. **Access the Application**
-   - Open your browser and visit: `http://localhost/crm/public/`
-   - You'll be redirected to the login page
+**5. Configure database connection**
+```bash
+cp config/database.example.php config/database.php
+```
+Edit `config/database.php` if your MySQL credentials differ from the defaults.
 
-6. **Login**
-   - **Username:** `admin`
-   - **Password:** `Admin@1234`
+**6. Open the app**
+```
+http://localhost/FUTURE_FS_02/public/
+```
+
+### Default Login
+| Field | Value |
+|-------|-------|
+| Username | `admin` |
+| Password | `Admin@1234` |
+
+> ⚠️ Change the default password after your first login.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-crm/
-├── app/                        # Core application logic
-│   ├── Core/                   # Framework core classes
-│   │   ├── Auth.php           # Authentication & authorization
-│   │   ├── Database.php       # PDO database connection
-│   │   ├── Session.php        # Session management
-│   │   ├── Validator.php      # Input validation
-│   │   └── Helper.php         # Utility functions
+FUTURE_FS_02/
+│
+├── 🧠 app/                          # Core application logic
 │   │
-│   └── Models/                 # Database models
-│       ├── Admin.php          # Admin user model
-│       ├── Lead.php           # Lead management
-│       ├── FollowUp.php       # Follow-up tracking
-│       ├── ActivityLog.php    # Activity logging
-│       └── BaseModel.php      # Base model class
-│
-├── config/                     # Configuration files
-│   ├── app.php                # Application settings
-│   └── database.php           # Database credentials
-│
-├── database/                   # Database files
-│   └── schema.sql             # Database structure + sample data
-│
-├── public/                     # Web-accessible files
-│   ├── index.php              # Entry point
-│   ├── login.php              # Login page
-│   ├── register.php           # Registration page
-│   ├── logout.php             # Logout handler
-│   ├── dashboard.php          # Main dashboard
-│   ├── home.php               # Public homepage
+│   ├── 🔧 Core/
+│   │   ├── Auth.php                 # 🔐 Authentication & session guard
+│   │   ├── Database.php             # 🗄️  PDO singleton connection
+│   │   ├── Helper.php               # 🛠️  Utility & formatting functions
+│   │   ├── Session.php              # 💾 Session management
+│   │   └── Validator.php            # ✅ Input validation engine
 │   │
-│   ├── leads/                 # Lead management pages
-│   │   ├── index.php          # List all leads
-│   │   ├── create.php         # Add new lead
-│   │   ├── edit.php           # Edit lead
-│   │   ├── view.php           # View lead details
-│   │   ├── delete.php         # Delete lead
-│   │   └── update_status.php  # Update lead status
-│   │
-│   └── reports/               # Reports & analytics
-│       └── index.php          # Reports dashboard
+│   └── 📦 Models/
+│       ├── BaseModel.php            # 🏗️  Shared model methods
+│       ├── Admin.php                # 👤 Admin user model
+│       ├── Lead.php                 # 🎯 Lead CRUD & stats
+│       ├── FollowUp.php             # 📅 Follow-up scheduling
+│       └── ActivityLog.php          # 📋 Action logging
 │
-├── views/                      # HTML templates
+├── ⚙️  config/
+│   ├── app.php                      # 🌐 App name, URL, timezone
+│   └── database.example.php         # 🔑 DB config template
+│
+├── 🗄️  database/
+│   └── schema.sql                   # 📊 Full DB schema + seed data
+│
+├── 🌍 public/                       # Web-accessible entry points
+│   ├── index.php                    # ↪️  Root redirect
+│   ├── home.php                     # 🏠 Public landing page
+│   ├── login.php                    # 🔑 Login page
+│   ├── register.php                 # 📝 Registration page
+│   ├── logout.php                   # 🚪 Session destroy
+│   ├── dashboard.php                # 📊 Main dashboard
+│   │
+│   ├── 👥 leads/
+│   │   ├── index.php                # 📋 All leads list
+│   │   ├── create.php               # ➕ Add new lead
+│   │   ├── edit.php                 # ✏️  Edit lead
+│   │   ├── view.php                 # 👁️  Lead details
+│   │   ├── delete.php               # 🗑️  Delete lead
+│   │   └── update_status.php        # 🔄 Status updater
+│   │
+│   └── 📈 reports/
+│       └── index.php                # 📉 Analytics & CSV export
+│
+├── 🎨 views/
 │   └── layouts/
-│       └── main.php           # Main layout (sidebar + topbar)
+│       ├── main.php                 # 🖥️  Authenticated layout
+│       └── auth.php                 # 🔒 Auth layout
 │
-├── assets/                     # Static assets
-│   ├── css/
-│   │   └── custom.css         # Custom styles
-│   └── js/
-│       └── app.js             # JavaScript functionality
+├── 🖼️  assets/
+│   ├── css/custom.css               # 💅 Custom styles
+│   └── js/app.js                    # ⚡ Client-side scripts
 │
-├── docs/                       # Documentation
-│   └── architecture.md        # Detailed architecture
+├── 📚 docs/
+│   └── architecture.md              # 🏛️  Architecture notes
 │
-├── .htaccess                   # URL rewriting & security
-└── README.md                   # This file
+├── .htaccess                        # 🛡️  Apache rewrite & security
+├── .gitignore                       # 🙈 Ignored files
+└── README.md                        # 📖 You are here
 ```
-
-For detailed architecture information, see [`docs/architecture.md`](docs/architecture.md)
 
 ---
 
-## 🎯 Usage Guide
+## 🗄️ Database Schema
 
-### Managing Leads
-
-1. **Add a New Lead**
-   - Click "Add Lead" button in the top right or sidebar
-   - Fill in lead information (name, email, phone, company, source)
-   - Set priority and status
-   - Click "Create Lead"
-
-2. **View Lead Details**
-   - Click on any lead name from the leads list
-   - View complete lead information
-   - See follow-up history and activity log
-
-3. **Edit Lead**
-   - Open lead details page
-   - Click "Edit Lead" button
-   - Update information and save
-
-4. **Update Lead Status**
-   - Use the status dropdown on the lead details page
-   - Status options: New → Contacted → Follow-up → Converted → Closed
-
-### Follow-ups
-
-1. **Schedule Follow-up**
-   - Open lead details page
-   - Click "Add Follow-up" button
-   - Set follow-up date and add notes
-   - Save to schedule
-
-2. **View Overdue Follow-ups**
-   - Check the dashboard for overdue alerts
-   - Click "Follow-ups" in the sidebar
-   - Filter by status to see pending items
-
-### Reports
-
-1. **View Analytics**
-   - Click "Reports" in the sidebar
-   - View conversion rates, status breakdown, and source performance
-
-2. **Export Data**
-   - Click "Export CSV" button on the reports page
-   - Download complete lead data for external analysis
+```
+admins          → id, name, username, email, password, created_at
+leads           → id, admin_id, name, email, phone, company, source,
+                  status, priority, notes, next_followup_date, created_at
+follow_ups      → id, lead_id, admin_id, notes, followup_date, created_at
+activity_logs   → id, admin_id, lead_id, action, created_at
+```
 
 ---
 
 ## 🔧 Configuration
 
-### Application Settings
-Edit `config/app.php` to customize:
-- Application name
-- Base URL
-- Timezone
-- Date format
+**`config/app.php`** — Application settings
+```php
+return [
+    'name'     => 'Mini CRM',
+    'base_url' => 'http://localhost/FUTURE_FS_02/public',
+    'timezone' => 'UTC',
+    'debug'    => true,
+];
+```
 
-### Database Settings
-Edit `config/database.php` for:
-- Database host
-- Database name
-- Username and password
-
----
-
-## 🎨 Customization
-
-### Styling
-- Main styles: `assets/css/custom.css`
-- Tailwind configuration: Inline in `views/layouts/main.php`
-- Color scheme: Modify CSS variables for brand colors
-
-### Features
-- Add new lead sources: Update dropdown in `public/leads/create.php`
-- Modify status options: Edit `Lead.php` model
-- Add custom fields: Update database schema and forms
+**`config/database.php`** — Database credentials *(not committed — copy from example)*
+```php
+return [
+    'host'    => 'localhost',
+    'dbname'  => 'crm_db',
+    'user'    => 'root',
+    'pass'    => '',
+    'charset' => 'utf8mb4',
+];
+```
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Common Issues
-
-**Problem:** "Database connection failed"
-- **Solution:** Check MySQL is running in XAMPP, verify credentials in `config/database.php`
-
-**Problem:** "Page not found" or 404 errors
-- **Solution:** Ensure `.htaccess` file exists and Apache `mod_rewrite` is enabled
-
-**Problem:** "Permission denied" errors
-- **Solution:** Check folder permissions, ensure Apache has read/write access
-
-**Problem:** Charts not displaying
-- **Solution:** Check browser console for JavaScript errors, ensure internet connection for CDN resources
-
-**Problem:** Login not working
-- **Solution:** Verify database was imported correctly, check `admins` table has default user
+| Problem | Solution |
+|---------|----------|
+| Database connection failed | Ensure MySQL is running · check `config/database.php` credentials |
+| 404 / Page not found | Ensure `.htaccess` exists · enable `mod_rewrite` in Apache |
+| Charts not showing | Check browser console · ensure internet access for CDN |
+| Login not working | Verify `schema.sql` was imported · check `admins` table |
+| Blank white page | Enable PHP error display · check Apache error logs |
 
 ---
 
-## 📝 Default Credentials
+## �️ Roadmap
 
-After importing the database, use these credentials:
-
-| Username | Password | Role |
-|----------|----------|------|
-| `admin` | `Admin@1234` | Administrator |
-
-**⚠️ Important:** Change the default password after first login for security.
-
----
-
-## 🚀 Future Enhancements
-
-Potential features for future development:
+- [x] Lead CRUD with status & priority
+- [x] Follow-up scheduling & overdue alerts
+- [x] Dashboard with live charts
+- [x] Reports & CSV export
+- [x] Activity logging
 - [ ] Email notifications for follow-ups
-- [ ] Advanced search and filtering
-- [ ] Lead assignment to multiple users/teams
-- [ ] Calendar view for follow-ups
-- [ ] API endpoints for integrations
-- [ ] Bulk import/export functionality
-- [ ] Custom fields and forms
-- [ ] Email templates
-- [ ] SMS integration
-- [ ] Advanced reporting with date ranges
+- [ ] Calendar view for scheduled follow-ups
+- [ ] REST API endpoints
+- [ ] Multi-user role management
+- [ ] Bulk lead import via CSV
+
+---
+
+## 👨‍� Author
+
+**Elias Araya**
+Full Stack Web Development Intern · Future Interns · 2026
+
+<a href="https://github.com/Elias-Araya">
+  <img src="https://img.shields.io/badge/GitHub-Elias--Araya-181717?style=for-the-badge&logo=github" />
+</a>
 
 ---
 
 ## 📄 License
 
-This project is developed as part of the Future Interns Full Stack Web Development program (2026).
+This project is licensed under the **MIT License** — feel free to use, modify, and distribute.
 
 ---
 
-## 👨‍💻 Developer Notes
-
-### Code Standards
-- PHP: PSR-12 coding standards
-- Database: PDO with prepared statements
-- Security: Input validation, XSS protection, CSRF tokens
-- Architecture: MVC-inspired structure with OOP principles
-
-### Database Schema
-- **admins**: User authentication
-- **leads**: Lead information
-- **follow_ups**: Follow-up scheduling and notes
-- **activity_logs**: System activity tracking
-
----
-
-## 📞 Support
-
-For issues or questions:
-1. Check the troubleshooting section above
-2. Review `docs/architecture.md` for technical details
-3. Inspect browser console for JavaScript errors
-4. Check Apache/PHP error logs in XAMPP
-
----
-
-**Built with ❤️ for Future Interns | 2026**
+<div align="center">
+  <sub>Built with ❤️ using PHP · MySQL · Tailwind CSS</sub>
+</div>
